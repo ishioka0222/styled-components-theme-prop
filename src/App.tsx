@@ -30,6 +30,12 @@ const ThirdPartyComponent: React.FC<
   );
 };
 
+const StyledThirdPartyComponentPassingThemePropAsIs = styled(
+  ThirdPartyComponent
+)`
+  box-shadow: 0 8px 8px 0px #333;
+`;
+
 type StyledThirdPartyComponentProps = Omit<
   ThirdPartyComponentProps,
   "theme"
@@ -46,6 +52,29 @@ const StyledThirdPartyComponent = styled(
 function App() {
   return (
     <>
+      <h1>Example</h1>
+      <hr />
+      <h2>Case 1: Original components</h2>
+      <ThirdPartyComponent theme={"filled"}>
+        ThirdPartyComponent's children...
+      </ThirdPartyComponent>
+      <ThirdPartyComponent theme={"outlined"}>
+        ThirdPartyComponent's children...
+      </ThirdPartyComponent>
+      <hr />
+      <h2>
+        Case 2: Pass the <code>theme</code> prop as is.
+      </h2>
+      <StyledThirdPartyComponentPassingThemePropAsIs theme={"filled"}>
+        StyledThirdPartyComponentIgnoringTheme's children...
+      </StyledThirdPartyComponentPassingThemePropAsIs>
+      <StyledThirdPartyComponentPassingThemePropAsIs theme={"outlined"}>
+        StyledThirdPartyComponentIgnoringTheme's children...
+      </StyledThirdPartyComponentPassingThemePropAsIs>
+      <hr />
+      <h2>
+        Case 3: Bypass the <code>theme</code> prop.
+      </h2>
       <StyledThirdPartyComponent _theme={"filled"}>
         StyledThirdPartyComponent's children...
       </StyledThirdPartyComponent>
